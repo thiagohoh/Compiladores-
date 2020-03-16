@@ -19,3 +19,5 @@ while True:
 	print("Tipo:[" + tok.type+"]" " Valor:[%s]" % tok.value + " Linha:[%s]" % tok.lineno)
 
 
+
+
