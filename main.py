@@ -1,23 +1,33 @@
-import lexicon
 import io
+import os
+from lexicon import lexicon
+# test dirs #
+test = "tests/"
+lexicon_result = "lexicon-results/"
+# start lexicon #
 lexicon = lexicon.Lexica()
-lexicon.build()
-lexicon.start_count()
 
+#  build lexicon - used for resetting the line counter #
+def build():
+	lexicon.build()
+	lexicon.start_count()
 
-file = 'tests/teste-1.tpp'
-with io.open(file, 'r', encoding='utf8') as f:
-	textu = f.read()
+# build lexicon #
+build()
 
-lexicon.lexer.input(textu)
+# runs all tests in tests folder and write the lexicon results on lexicon-results folder
+for file in os.listdir("tests"):
+	if file.endswith(".tpp"):
+		with io.open(test + file, 'r', encoding='utf8') as f:
+			go = f.read()
+		lexicon.lexer.input(go)
+		while True:
+			tok = lexicon.lexer.token()
+			if not tok:
+				break
+			with io.open(lexicon_result + file + "_result", 'a', encoding='utf8') as j:
+				j.write("Tipo:[" + tok.type + "]" " Valor:[%s]" % tok.value + " Linha:[%s]" % tok.lineno + "\n")
+		build()
 
-
-while True:
-	tok = lexicon.lexer.token()
-	if not tok:
-		break
-	print("Tipo:[" + tok.type+"]" " Valor:[%s]" % tok.value + " Linha:[%s]" % tok.lineno)
-
-
-
+print("Finished lexicon all test files")
 

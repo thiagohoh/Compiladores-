@@ -75,7 +75,8 @@ class Lexica(object):
 	t_MAIORQ = r'\>='
 
 # Indentifica os IDs
-	def t_ID(self,t):
+	def t_ID(self, t):
+		# regex pros acentos
 		r"""[a-zA-ZÀ-ÿ_][a-zÀ-ÿ_0-9]*"""
 		t.type = self.reserved.get(t.value, 'ID')
 		t.lexer.id_count += 1
@@ -116,9 +117,11 @@ class Lexica(object):
 		print("Illegal character '%s'" % t.value[0] + " Na linha %s" % self.lexer.lineno)
 		t.lexer.skip(1)
 
+	# counter for the number counter and id counter
 	def start_count(self):
 		self.lexer.num_count = 0
 		self.lexer.id_count = 0
 
+# build
 	def build(self, **kwargs):
 		self.lexer = lex.lex(module=self, **kwargs)
