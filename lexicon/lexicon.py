@@ -7,7 +7,7 @@ class Lexica(object):
 	def __init__(self, **kwargs):
 		self.lexer = lex.lex(module=self, **kwargs)
 
-# List of reserve words
+# List of reserved words
 	reserved = {
 		'se': "SE",
 		u'então': 'ENTAO',
