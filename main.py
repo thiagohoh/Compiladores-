@@ -70,19 +70,19 @@ if __name__ == '__main__':
 
 	#run_tests()
 
-	with io.open('tests/expressoes.tpp', 'r', encoding='utf8') as f:
+	with io.open('tests/fat.tpp', 'r', encoding='utf8') as f:
 		cod = f.read()
 	syn = syntatict.Syntactic(cod, toke=lexicon.tokens)
 	tree = syn.parser()
 	syntatic.arvore.print_tree(syn.st)
 
-	# orig_stdout = sys.stdout
-	# f = open('out.txt', 'w', encoding='utf8')
-	# sys.stdout = f
-	# syntatic.arvore.print_tree(syn.st)
-	# sys.stdout = orig_stdout
-	# f.close()
-	#
+	orig_stdout = sys.stdout
+	f = open('out.txt', 'w', encoding='utf8')
+	sys.stdout = f
+	syntatic.arvore.print_tree(syn.st)
+	sys.stdout = orig_stdout
+	f.close()
+
 	# for pre, fill, node in RenderTree(tree):
 	# 	print("%s%s" % (pre, node.name))
 	#DotExporter(tree).to_picture("/tests/tree.png")
