@@ -1,20 +1,20 @@
-flutuante: V[100]
-flutuante: V2[100]
+flutuante: v[100]
+flutuante: v2[100]
 
 multivet(inteiro: t)
 	inteiro: i
 	i := 0
 	repita
-		V2[i] = V[i] * 2
+		v2[i] = v[i] * 2
 		i := i + 1
 	até i = t
 fim
 
-inteiro principal ()
+inteiro principal()
 	inteiro: i
 	i := 0
 	repita
-		V[i] := i+1
+		v[i] := i+1
 		i := i + 1
 	até i = 100
 
