@@ -40,7 +40,8 @@ class Syntactic:
 		'''
 		programa : lista_declaracoes
 		'''
-		p[0] = Arvore('programa', [p[1]])
+		print(p[1])
+		p[0] = Arvore(type='programa', children=[p[1]])
 
 	def p_lista_declaracoes(self, p):
 		'''
@@ -79,7 +80,7 @@ class Syntactic:
 		'''
 		if len(p) == 4:
 			p[0] = Arvore('lista_variaveis', [p[1], p[3]])
-		elif len(p) == 2:
+		else:
 			p[0] = Arvore('lista_variaveis', [p[1]])
 
 	def p_var(self, p):
@@ -99,7 +100,7 @@ class Syntactic:
 		'''
 		if len(p) == 5:
 			p[0] = Arvore('indice', [p[1], p[3]])
-		elif len(p) == 4:
+		else:
 			p[0] = Arvore('indice', [p[2]])
 
 	def p_tipo(self, p):
@@ -114,16 +115,23 @@ class Syntactic:
 		declaracao_funcao : tipo cabecalho
 		| cabecalho
 		'''
+		print(len(p))
 		if len(p) == 3:
 			p[0] = Arvore('declaracao_funcao', [p[1], p[2]])
-		elif len(p) == 2:
+			print("p==3")
+			print(p[1])
+			print(p[2])
+		else:
 			p[0] = Arvore('declaracao_funcao', [p[1]])
+			print("p==2")
+			print(p[1])
 
 	def p_cabecalho(self, p):
 		'''
 		cabecalho : ID APAREN lista_parametros FPAREN corpo FIM
 		'''
 		p[0] = Arvore('cabecalho', [p[3], p[5]], p[1])
+		#p[0] = Arvore('cabecalho', [p[5], p[3]], p[1])
 
 	def p_lista_parametros(self, p):
 		'''
@@ -133,18 +141,14 @@ class Syntactic:
 		'''
 		if len(p) == 4:
 			p[0] = Arvore('lista_parametros', [p[1], p[3]])
-		elif len(p) == 2:
+		else:
 			p[0] = Arvore('lista_parametros', [p[1]])
 
 	def p_parametro(self, p):
 		'''
 		parametro : tipo DOISPONTOS ID
-		| ID
 		'''
-		if len(p) == 4:
-			p[0] = Arvore('parametro', [p[1]], p[3])
-		else:
-			p[0] = Arvore('parametro', [], p[1])
+		p[0] = Arvore('parametro', [p[1]], p[3])
 
 	def p_parametro2(self, p):
 		'''
@@ -195,6 +199,8 @@ class Syntactic:
 		'''
 		atribuicao : var ATRIBUICAO expressao
 		'''
+		print(p[1])
+		print(p[3])
 		p[0] = Arvore('atribuicao', [p[1], p[3]])
 
 	def p_leia(self, p):

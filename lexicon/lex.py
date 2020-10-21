@@ -131,7 +131,7 @@ while True:
 	tok = lexer.token()
 	if not tok:
 		break
-	print("Tipo:[" + tok.type+"]" " Valor:[%s]" % tok.value + " Linha:[%s]" % tok.lineno)
+	print("Tipo:[" + tok.type + "]" " Valor:[%s]" % tok.value + " Linha:[%s]" % tok.lineno)
 
 
 print("Quantidade de Linhas [%s] " % lexer.lineno + "| Quantidade de numeros [%s]" % lexer.num_count + " | Quantidade de IDS [%s]" % lexer.id_count)

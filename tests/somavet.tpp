@@ -1,8 +1,3 @@
-inteiro: t
-t := 4
-
-inteiro: v1[t]
-
 inteiro somavet(inteiro: vet[], inteiro: tam)
     inteiro: result
     result := 0
@@ -18,6 +13,9 @@ inteiro somavet(inteiro: vet[], inteiro: tam)
 fim
 
 inteiro principal ()
+    inteiro: t
+    t := 4
+    inteiro: v1[t]
     inteiro: x
     x := somavet(v1,t)
     retorna(0)
